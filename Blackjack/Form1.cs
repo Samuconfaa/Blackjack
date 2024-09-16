@@ -13,6 +13,8 @@ namespace Blackjack
         int randomN;
         int valorePlayer = 0;
         int valoreOpponent = 0;
+        int punteggioTu = 0;
+        int punteggioAvv = 0;
 
 
 
@@ -28,21 +30,28 @@ namespace Blackjack
                 {
                     txtBoxMessaggi.Text = "Hai preso altri " + valorePlayer + " punti. Vuoi prendere un'altra carta o fermarti?";
                 }
-                else if (valorePlayer == 21) {
-                    txtBoxMessaggi.Text = "Hai fatto 21 ed hai vinto. Bravo!";
-                    await Task.Delay(2000);
-                    txtBox.Clear();
-                    txtBoxMessaggi.Clear();
-                    started = false;
-                }else
+                else if (valorePlayer == 21)
                 {
-                    txtBoxMessaggi.Text = "Hai fatto più di 21 ed hai perso";              
+                    txtBoxMessaggi.Text = "Hai fatto 21 ed hai vinto. Bravo!";
+                    punteggioTu++;
+                    reloadScore();
                     await Task.Delay(2000);
                     txtBox.Clear();
                     txtBoxMessaggi.Clear();
                     started = false;
                 }
-            }else
+                else
+                {
+                    txtBoxMessaggi.Text = "Hai fatto più di 21 ed hai perso";
+                    punteggioAvv++;
+                    reloadScore();
+                    await Task.Delay(2000);
+                    txtBox.Clear();
+                    txtBoxMessaggi.Clear();
+                    started = false;
+                }
+            }
+            else
             {
                 txtBoxMessaggi.Text = "Gioco non avviato, clicca su AVVIA per iniziare";
             }
@@ -76,6 +85,8 @@ namespace Blackjack
                     else if ((valoreOpponent > valorePlayer) && (valoreOpponent < 22))
                     {
                         txtBoxMessaggi.Text = "Il tuo avversario ha vinto con " + valoreOpponent + " punti.";
+                        punteggioAvv++;
+                        reloadScore();
                         await Task.Delay(2000);
                         txtBox.Clear();
                         txtBoxMessaggi.Clear();
@@ -86,6 +97,8 @@ namespace Blackjack
                     else
                     {
                         txtBoxMessaggi.Text = "Il tuo avversario ha fatto più di 21 punti ed ha perso.";
+                        punteggioTu++;
+                        reloadScore();
                         await Task.Delay(2000);
                         txtBox.Clear();
                         txtBoxMessaggi.Clear();
@@ -97,6 +110,8 @@ namespace Blackjack
                 if ((valorePlayer > valoreOpponent) && (valoreOpponent >= 17))
                 {
                     txtBoxMessaggi.Text = "Complimenti! Hai fatto più punti e hai vinto";
+                    punteggioTu++;
+                    reloadScore();
                     await Task.Delay(2000);
                     txtBox.Clear();
                     txtBoxMessaggi.Clear();
@@ -114,6 +129,7 @@ namespace Blackjack
         private async void btnStart_Click(object sender, EventArgs e)
         {
             started = true;
+            reloadScore();
             valorePlayer = 0;
             valoreOpponent = 0;
             Random random = new Random();
@@ -128,6 +144,21 @@ namespace Blackjack
             txtBoxMessaggi.Text = "Nella seconda giocata hai totalizzato un punteggio di " + randomN;
             await Task.Delay(2000);
             txtBoxMessaggi.Text = "Vuoi prendere un'altra carta o vuoi fermarti?";
+
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            punteggioTu = 0;
+            punteggioAvv = 0;
+            reloadScore();
+
+        }
+
+        public void reloadScore()
+        {
+            txtAvv.Text = punteggioAvv.ToString();
+            txtYou.Text = punteggioTu.ToString();
 
         }
     }

@@ -2,9 +2,9 @@ using System.Threading.Tasks;
 
 namespace Blackjack
 {
-    public partial class Form1 : Form
+    public partial class BlackJack : Form
     {
-        public Form1()
+        public BlackJack()
         {
             InitializeComponent();
         }
@@ -115,6 +115,7 @@ namespace Blackjack
                         txtBoxMessaggi.Clear();
                         txtBoxOpp.Clear();
                         txtPuntata.Clear();
+                        vittoria();
                         break;
                     }
                     await Task.Delay(2000);

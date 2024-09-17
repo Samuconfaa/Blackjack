@@ -1,6 +1,6 @@
 ﻿namespace Blackjack
 {
-    partial class Form1
+    partial class BlackJack
     {
         /// <summary>
         ///  Required designer variable.
@@ -196,6 +196,7 @@
             txtSaldo.ReadOnly = true;
             txtSaldo.Size = new Size(139, 36);
             txtSaldo.TabIndex = 13;
+            txtSaldo.Text = "20";
             txtSaldo.TextAlign = HorizontalAlignment.Center;
             // 
             // label4
@@ -293,7 +294,7 @@
             btn100.UseVisualStyleBackColor = false;
             btn100.Click += btn100_Click;
             // 
-            // Form1
+            // BlackJack
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -320,8 +321,8 @@
             Controls.Add(btnStop);
             Controls.Add(btnCarta);
             Controls.Add(txtBox);
-            Name = "Form1";
-            Text = "Form1";
+            Name = "BlackJack";
+            Text = "BlackJack";
             ResumeLayout(false);
             PerformLayout();
         }
